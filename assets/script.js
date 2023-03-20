@@ -1,5 +1,9 @@
 // Assignment code here
 
+//       $('#hour-17 .description').val(localStorage.getItem('hour-17'));
+
+
+
 // Array of special characters to be included in password
 var specialCharacters = [
       '@',
