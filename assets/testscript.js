@@ -1,6 +1,4 @@
-// Assignment code here
 
-// var Characters =[ ... ];
 var specialCharacters = ['~','`','!','@','#','$','%','^','&','*','(',')','-','_','+','=','[',']','{','}','|','/','?',"'",'"',";",':',",",'<','.','>'];
 var numericCharacters = ['0','1','2','3','4','5','6','7','8','9'];
 var lowerCasedCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -21,6 +19,17 @@ if (length > 128) {
       alert('Password length must less than 129 characters');
       return null;}
 
+      // function functionConfirm(msg, myYes, myNo, cancel) {
+      //       var confirmBox = $("#confirm");
+      //       confirmBox.find(".message").text(msg);
+      //       confirmBox.find(".yes,.no,.cancel").unbind().click(function() {
+      //          confirmBox.hide();
+      //       });
+      //       confirmBox.find(".yes").click(myYes);
+      //       confirmBox.find(".no").click(myNo);
+      //       confirmBox.find(".no").click(cancel);
+      //       confirmBox.show();
+      //    }
 
       
 var hasSpecialCharacters = confirm(
@@ -56,6 +65,7 @@ function getRandom(arr) {
 
 function generatePassword() {
       var options = getPasswordOptions();
+   // var options = functionConfirm();
 
 var result = [];
 
@@ -88,19 +98,16 @@ for (var i = 0; i < options.length; i++) {
 for (var i = 0; i < guaranteedCharacters.length; i++) {
       result[i] = guaranteedCharacters[i];}
 
-return result.join('');
-}
+return result.join('');}
 
-// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-}
+  passwordText.value = password;}
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// https://www.tutorialspoint.com/How-to-create-JavaScript-alert-with-3-buttons-Yes-No-and-Cancel
