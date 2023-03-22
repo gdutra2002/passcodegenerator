@@ -9,7 +9,8 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 // fn getPasswordOptions defines the parameters, if selected by the user to be applied.
 function getPasswordOptions() {
 // The initial condition the end user must satisfy to procede is password length.
-var length = parseInt(
+// Duodecimal base with parseFloat rounds up the requested character length.
+var length = parseFloat(
       prompt('How many characters would you like your password to contain?'),
       12);
 if (Number.isNaN(length)) {
