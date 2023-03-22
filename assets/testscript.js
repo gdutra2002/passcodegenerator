@@ -1,15 +1,14 @@
-// Assignment code here
 
-// var Characters =[ ... ]; define what are the allowed values of the output.
-var specialCharacters = ['~','`','!','@','#','$','%','^','&','*','(',')','-','_','+','=','[',']','{','}','|','/','?',"'",'"',";",':',",",'<','.','>'];
-var numericCharacters = ['0','1','2','3','4','5','6','7','8','9'];
-var lowerCasedCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+// Characters define what are the allowed symbols of the output password.
+var symbol = ['~','`','!','@','#','$','%','^','&','*','(',')','-','_','+','=','[',']','{','}','|','/','?',"'",'"',";",':',",",'<','.','>'];
+var numeric = ['0','1','2','3','4','5','6','7','8','9'];
+var lowerChar = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var upperChar = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-// fn getPasswordOptions defines the parameters, if selected by the user to be applied.
-function getPasswordOptions() {
+// fn getPwOptions defines the parameters, if selected by the user to be applied.
+function getPwOptions() {
 // The initial condition the end user must satisfy to procede is password length.
-// Duodecimal base with parseFloat rounds up the requested character length.
+// Duodecimal base with parseFloat rounds up the requested length to a whole character.
 var length = parseFloat(
       prompt('How many characters would you like your password to contain?'),
       12);
@@ -23,30 +22,30 @@ if (length > 128) {
       alert('Password length must less than 129 characters');
       return null;}
 // The next quadrant of parameters are first defined including an prompt output message,
-var hasSpecialCharacters = confirm(
-      'Click OK to confirm including special characters.');
-var hasNumericCharacters = confirm(
-      'Click OK to confirm including numeric characters.');
-var hasLowerCasedCharacters = confirm(
-      'Click OK to confirm including lowercase characters.');
-var hasUpperCasedCharacters = confirm(
-      'Click OK to confirm including uppercase characters.');
+var hasSymbol = confirm(
+      'Click OK to affirm special characters.');
+var hasNumeric = confirm(
+      'Click OK to affirm numeric characters.');
+var hasLowerChar = confirm(
+      'Click OK to affirm lowercase characters.');
+var hasUpperChar = confirm(
+      'Click OK to affirm uppercase characters.');
 // then qualified with a boolean operator to stop the function if all 4 are false.
 if (
-      hasSpecialCharacters === false &&
-      hasNumericCharacters === false &&
-      hasLowerCasedCharacters === false &&
-      hasUpperCasedCharacters === false) {
+      hasSymbol === false &&
+      hasNumeric === false &&
+      hasLowerChar === false &&
+      hasUpperChar === false) {
       alert('Must select at least one character type');
       return null;}
-// If at lease 1 of 4 parameter conditions are met, those parameters become the variable passwordOptions.
-var passwordOptions = {
+// If at lease 1 of 4 parameter conditions are met, those parameters become the variable password options.
+var pwOptions = {
       length: length,
-      hasSpecialCharacters: hasSpecialCharacters,
-      hasNumericCharacters: hasNumericCharacters,
-      hasLowerCasedCharacters: hasLowerCasedCharacters,
-      hasUpperCasedCharacters: hasUpperCasedCharacters,};
-    return passwordOptions;}
+      hasSymbol: hasSymbol,
+      hasNumeric: hasNumeric,
+      hasLowerChar: hasLowerChar,
+      hasUpperChar: hasUpperChar,};
+      return pwOptions;}
 
 // The random number generator is presented: calling the variable length as described above.
 function getRandom(arr) {
@@ -56,54 +55,42 @@ function getRandom(arr) {
 
 // The password generator is explcitly defined as a function based upon all the above described options.
 function generatePassword() {
-      var options = getPasswordOptions();
-
+      var options = getPwOptions();
 // The three variable of the function are below, the var result is dependent, possible and gaurenteed are independent. 
 var result = [];
-
-var possibleCharacters = [];
-      
-var guaranteedCharacters = [];      
-
+var possibleChar = [];
+var certainteedChar = [];      
 // Given the above options, arrays are created with the random function.
 if (!options) return null;      
-      
-if (options.hasSpecialCharacters) {
-      possibleCharacters = possibleCharacters.concat(specialCharacters);
-      guaranteedCharacters.push(getRandom(specialCharacters));}     
-      
-if (options.hasNumericCharacters) {
-      possibleCharacters = possibleCharacters.concat(numericCharacters);
-      guaranteedCharacters.push(getRandom(numericCharacters));}      
-      
-if (options.hasLowerCasedCharacters) {
-      possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
-      guaranteedCharacters.push(getRandom(lowerCasedCharacters));}     
-      
-if (options.hasUpperCasedCharacters) {
-      possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
-      guaranteedCharacters.push(getRandom(upperCasedCharacters));}   
-
+if (options.hasSymbol) {
+      possibleChar = possibleChar.concat(symbol);
+      certainteedChar.push(getRandom(symbol));}        
+if (options.hasNumeric) {
+      possibleChar = possibleChar.concat(numeric);
+      certainteedChar.push(getRandom(numeric));}         
+if (options.hasLowerChar) {
+      possibleChar = possibleChar.concat(lowerChar);
+      certainteedChar.push(getRandom(lowerChar));}        
+if (options.hasUpperChar) {
+      possibleChar = possibleChar.concat(upperChar);
+      certainteedChar.push(getRandom(upperChar));}   
 // The two independent variables arrays are defined from the option arrays.
 for (var i = 0; i < options.length; i++) {
-      var possibleCharacter = getRandom(possibleCharacters);
-      result.push(possibleCharacter);}
-
-for (var i = 0; i < guaranteedCharacters.length; i++) {
-      result[i] = guaranteedCharacters[i];}
+      var Chaoxx = getRandom(possibleChar);
+      result.push(Chaoxx);}
+for (var i = 0; i < certainteedChar.length; i++) {
+      result[i] = certainteedChar[i];}
 // The dependent variable result transforms the arrays into a string. This is the 'password.'
-return result.join('');
-}
+return result.join('');}
 
 // Get references to the #generate element in the html.
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input displayed to the user.
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-}
+      var password = generatePassword();
+      var passwordText = document.querySelector("#password");
+      passwordText.value = password;}
 
 // Add event listener to generate button, awaits the users mouse click.
 generateBtn.addEventListener("click", writePassword);
